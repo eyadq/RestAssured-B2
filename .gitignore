@@ -1,3 +1,5 @@
 /.idea/
 /target/
 /RestAssured.iml
+/.attach_pid28348
+/src/test/resources/configuration/secrets.properties
