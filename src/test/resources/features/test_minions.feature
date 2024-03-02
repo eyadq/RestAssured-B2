@@ -7,6 +7,7 @@ Feature: Test Minion Rest Api
 
   @allMinions
   Scenario: Test Get All Minions
+    Given baseURI is "minions.api.base"
     And request header Accept is "application/json"
     When with path "/api/minions"
     And the HTTP method is GET
