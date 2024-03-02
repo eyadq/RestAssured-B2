@@ -1,10 +1,9 @@
-package io.loopcamp.test.day02_headers;
+package io.loopcamp.test.day02_a_headers;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utilities.ConfigurationReader;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;

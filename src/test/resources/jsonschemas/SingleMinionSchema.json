@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Single Minion JsonSchema",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "gender",
+    "phone"
+  ],
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "default": "",
+      "minLength": 2,
+      "maxLength": 15
+    },
+    "gender": {
+      "title": "Gender",
+      "type": "string",
+      "default": "Male",
+      "pattern": "^(Male|Female)$"
+    },
+    "phone": {
+      "title": "Phone",
+      "type": "string",
+      "minimum": 1000000000,
+      "maximum": 9999999999999
+    }
+  }
+}

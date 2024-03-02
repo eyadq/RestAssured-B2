@@ -1,15 +1,12 @@
-package io.loopcamp.test.day02_headers;
+package io.loopcamp.test.day02_a_headers;
 
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utilities.ConfigurationReader;
 
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static  org.junit.jupiter.api.Assertions.*;
 import static utilities.Constants.MINIONS_BASE_URL;
 
 public class MinionApiHelloWorld {

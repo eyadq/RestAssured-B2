@@ -3,54 +3,41 @@ package utilities;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLOutput;
 import java.util.Properties;
 import java.util.Set;
 
 public class ConfigurationReader {
 
-    private static Properties allProperties;
-    static private final String configuration = "src/test/resources/configuration/configuration.properties";
-    static private final String secrets = "src/test/resources/configuration/secrets.properties";
-
+    private static Properties properties = new Properties();
+    static private final String[] paths = {
+            "src/test/resources/configuration/configuration.properties",
+            "src/test/resources/configuration/secrets.properties"
+    };
 
     static {
         try {
-            List<String> paths = new ArrayList<>();
-            paths.add(configuration);
-            paths.add(secrets);
-
-            List<Properties> propertiesList = new ArrayList<>();
             for(String path: paths){
-                Properties properties = new Properties();
+                Properties propertiesFromEachConfigFile = new Properties();
                 FileInputStream input = new FileInputStream(path);
-                properties.load(input);
+                propertiesFromEachConfigFile.load(input);
                 input.close();
-                propertiesList.add(properties);
-            }
-
-            allProperties = new Properties();
-            for(Properties properties: propertiesList){
-                allProperties.putAll(properties);
+                properties.putAll(propertiesFromEachConfigFile);
             }
 
         } catch(FileNotFoundException e){
-            if(e.getMessage().startsWith("secrets")){
-                System.out.println("*** " + e.getMessage() + " remember to add file to .gitIgnore" + " ***");
-            } else {
-                System.out.println("*** " + e.getMessage() + " ADD SENSITIVE DATA TO \"secrets.properties ONLY\"" + " ***");
-            }
+
+            System.out.println("Configuration Reader FILES NOT FOUND ERROR" +
+                    "\n\tGeneral config: \"src/test/resources/configuration/configuration.properties\"" +
+                    "\n\tSecrets config: \"src/test/resources/configuration/secrets.properties\"" +
+                    "\n\t\tNOTE: Add \"secrets.properties\" to gitIgnore in order to avoid committing passwords");
+
         } catch (IOException e) {
             System.out.println(e.getMessage() + " not found");
         }
     }
 
     public static String getProperty(String keyName){
-        return allProperties.getProperty(keyName);
-    }
-
-    private static Set<String> getAllProperties(){
-        return allProperties.stringPropertyNames();
+        return properties.getProperty(keyName);
     }
 }

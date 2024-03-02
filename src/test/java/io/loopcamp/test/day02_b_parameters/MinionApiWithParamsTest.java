@@ -1,4 +1,4 @@
-package io.loopcamp.test.day02_headers;
+package io.loopcamp.test.day02_b_parameters;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

@@ -1,4 +1,4 @@
-package io.loopcamp.test.day02_headers;
+package io.loopcamp.test.day02_b_parameters;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -103,6 +103,7 @@ public class MinionsApiWithQueryParamsTest {
         String apiMethod = MINIONS_BASE_URL + "/api/minions/search";
         String firstCharacter = (gender == Gender.NONE && genderQuery.equals("")) ? "" : "?";
         String and = (gender.equals(Gender.NONE)) ? "" : "&";
+
         apiMethod = apiMethod + firstCharacter + genderQuery + and + nameContains;
 
         return apiMethod;
