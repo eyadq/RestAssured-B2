@@ -5,6 +5,7 @@ Feature: Test Minion Rest Api
     Given baseURI is "minions.api.base"
 
 
+  @allMinions
   Scenario: Test Get All Minions
     And request header Accept is "application/json"
     When with path "/api/minions"
@@ -13,7 +14,7 @@ Feature: Test Minion Rest Api
     And response header Content-Type is "application/json"
     And Json response will be validated with the  "AllMinionsSchema" Schema file
 
-
+    @singleMinion
   Scenario: Test Get Single Minion
     And request header Accept is "application/json"
     When with path params
@@ -25,6 +26,7 @@ Feature: Test Minion Rest Api
     And Json response will be validated with the  "SingleMinionSchema" Schema file
 
 
+      @postMinion
   Scenario: Post New Minion
     And request header Accept is "application/json"
     And request Content-Type Accept is "application/json"
@@ -37,6 +39,7 @@ Feature: Test Minion Rest Api
     And delete the new Minion
 
 
+        @putMinion
   Scenario: Put New Minion
     And create new minion that will be updated
     And request header Accept is "application/json"
@@ -56,6 +59,7 @@ Feature: Test Minion Rest Api
     And delete the new Minion
 
 
+  @patchMinion
   Scenario: Patch New Minion
     And create new minion that will be updated
     And request header Accept is "application/json"

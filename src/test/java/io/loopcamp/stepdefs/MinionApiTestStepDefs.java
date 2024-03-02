@@ -152,7 +152,7 @@ public class MinionApiTestStepDefs extends MinionsApiTestBase {
     public void the_http_method_is_get() {
         response = given().spec(requestSpecBuilder.build()).when().get();
         validate = response.then();
-        validate.log().all();
+
     }
 
 
@@ -161,7 +161,6 @@ public class MinionApiTestStepDefs extends MinionsApiTestBase {
         response = given().spec(requestSpecBuilder.build()).when().post();
         validate = response.then();
         minionId = validate.extract().path("data.id");
-        validate.log().all();
     }
 
 
@@ -169,7 +168,6 @@ public class MinionApiTestStepDefs extends MinionsApiTestBase {
     public void the_http_method_is_put() {
         response = given().spec(requestSpecBuilder.build()).when().put();
         validate = response.then();
-        validate.log().all();
     }
 
 
@@ -177,7 +175,6 @@ public class MinionApiTestStepDefs extends MinionsApiTestBase {
     public void the_http_method_is_patch() {
         response = given().spec(requestSpecBuilder.build()).when().patch();
         validate = response.then();
-        validate.log().all();
     }
 
 
@@ -191,6 +188,7 @@ public class MinionApiTestStepDefs extends MinionsApiTestBase {
     @Then("status code will be {int}")
     public void status_code_will_be(int statusCode) {
         response.then().statusCode(statusCode);
+        System.out.println("\n*** Status code was: " + response.statusCode() + " ***");
     }
 
 
@@ -205,12 +203,15 @@ public class MinionApiTestStepDefs extends MinionsApiTestBase {
         String filePath = "";
         switch (schema) {
             case "AllMinionsSchema":
+                //validate.extract().jsonPath().getList("", Minion.class).forEach(System.out::println);
                 filePath = allMinionsSchemaFilePath;
                 break;
             case "SingleMinionSchema":
+                //System.out.println("Got single minion: " + validate.extract().as(Minion.class));
                 filePath = singleMinionSchemaFilePath;
                 break;
             case "MinionPostSchema":
+                //System.out.println("Got single minion: " + validate.extract().jsonPath().getObject("data", Minion.class));
                 filePath = postMinionSchemaFilePath;
                 break;
         }
